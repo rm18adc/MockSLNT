@@ -47,6 +47,15 @@ public class TodoList implements Iterable<String>{
 	public String elementAt(int i) {
 		return list.get(i);
 	}
+        
+        @Override
+        public String toString()
+        {
+        String retval = "";
+        if (size()==0) return "";
+        for (String s:list) retval+=s+",";
+        return retval.substring(0,retval.length()-1);
+        }
 	
 	@Override
 	public Iterator<String> iterator() {

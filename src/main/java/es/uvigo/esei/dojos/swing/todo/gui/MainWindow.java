@@ -23,7 +23,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
-
 import es.uvigo.esei.dojos.swing.todo.core.TodoList;
 
 public class MainWindow extends JFrame{
@@ -32,6 +31,10 @@ public class MainWindow extends JFrame{
 	private JPanel mainContentPane;
 	private JPanel newTaskControls;
 	private JButton addTaskButton;
+        private JButton DeleteAllButton;
+        private JButton ReverseListButton;
+        private JButton UpperCaseButton;
+        private JButton LowerCaseButton;
 	private JTextField newTaskField;
 	private JScrollPane taskListScrollPane;
 	private JPanel taskListControls;
@@ -63,7 +66,6 @@ public class MainWindow extends JFrame{
 		if (mainContentPane == null) {
 			this.mainContentPane = new JPanel();
 			this.mainContentPane.setLayout(new BorderLayout());
-			
 			this.mainContentPane.add(getNewTaskControls(), BorderLayout.NORTH);
 			this.mainContentPane.add(getTasksListScrollPane(), BorderLayout.CENTER);
 			this.mainContentPane.add(getTasksListControls(), BorderLayout.EAST);
@@ -130,7 +132,25 @@ public class MainWindow extends JFrame{
 			button = getDeleteButton();
 			button.setAlignmentX(CENTER_ALIGNMENT);
 			this.taskListControls.add(button);
-			
+                        
+//      *** Mock test programming                        
+                        button = getDeleteAllButton();
+			button.setAlignmentX(CENTER_ALIGNMENT);
+			this.taskListControls.add(button);
+                        
+                        button = getReverseListButton();
+			button.setAlignmentX(CENTER_ALIGNMENT);
+			this.taskListControls.add(button);                        
+                        
+                        button = ConvertToUppercase();
+			button.setAlignmentX(CENTER_ALIGNMENT);
+			this.taskListControls.add(button);  
+
+                        button = ConvertToLowercase();
+			button.setAlignmentX(CENTER_ALIGNMENT);
+			this.taskListControls.add(button); 
+//      *** Mock test programming        
+                        
 			this.taskListControls.add(createVerticalStrut(10));
 			
 			button = getDownButton();
@@ -160,23 +180,7 @@ public class MainWindow extends JFrame{
 		return this.upButton;
 	}
 
-	private JButton getDeleteButton() {
-		if (this.deleteButton == null) {
-			this.deleteButton = new JButton("Delete");
-			this.deleteButton.setIcon(createIcon("bin.png"));
-			
-			this.deleteButton.addMouseListener(new MouseAdapter(){
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					todoListModel.removeAt(getTaskList().getSelectedIndex());
-				}
-			});
-		}
-		
-		return this.deleteButton;
-	}
-
-	private JButton getDownButton() {
+        	private JButton getDownButton() {
 		if (this.downButton == null) {
 			this.downButton = new JButton("Down");
 			this.downButton.setIcon(createIcon("down.png"));
@@ -195,7 +199,25 @@ public class MainWindow extends JFrame{
 		
 		return this.downButton;
 	}
-
+                
+	private JButton getDeleteButton() {
+		if (this.deleteButton == null) {
+			this.deleteButton = new JButton(" Delete   ");
+			this.deleteButton.setIcon(createIcon("bin.png"));
+			
+			this.deleteButton.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					todoListModel.removeAt1(getTaskList().getSelectedIndex());
+				}
+			});
+		}
+		
+		return this.deleteButton;
+	}
+        
+        
+        
 	private JButton getAddTaskButton() {
 		if (this.addTaskButton == null) {
 			this.addTaskButton = new JButton("Add");
@@ -246,4 +268,74 @@ public class MainWindow extends JFrame{
 				getClass().
 				getResource("/"+iconfilename));
 	}
+
+// *********** Mock Test Programming *****************************************         
+        private JButton getDeleteAllButton() {
+		if (this.DeleteAllButton == null) {
+			this.DeleteAllButton = new JButton("DeleteAll");
+			this.DeleteAllButton.setIcon(createIcon("bin.png"));
+			
+			this.DeleteAllButton.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					todoListModel.removeAll(getTaskList().getSelectedIndex());
+				}
+			});
+		}
+		
+		return this.DeleteAllButton;
+	}
+                
+        private JButton getReverseListButton() {
+		if (this.ReverseListButton == null) {
+			this.ReverseListButton = new JButton("Reverse ");
+			this.ReverseListButton.setIcon(createIcon("diary.png"));
+			
+			this.ReverseListButton.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					todoListModel.reverseList();
+				}
+			});
+		}
+		
+		return this.ReverseListButton;
+	}        
+
+        private JButton ConvertToUppercase() {
+		if (this.UpperCaseButton == null) {
+			this.UpperCaseButton = new JButton("Uppercase");
+			this.UpperCaseButton.setIcon(createIcon("uppercase.png"));
+			
+			this.UpperCaseButton.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e) {
+                                    todoListModel.ConvertToUppercase(getTaskList().getSelectedIndex());
+	
+				}
+			});
+		}
+		
+		return this.UpperCaseButton;
+	}
+        
+	private JButton ConvertToLowercase() {
+		if (this.LowerCaseButton == null) {
+			this.LowerCaseButton = new JButton("Lowercase");
+			this.LowerCaseButton.setIcon(createIcon("lowercase.png"));
+			
+			this.LowerCaseButton.addMouseListener(new MouseAdapter(){
+				@Override
+				public void mouseClicked(MouseEvent e) {
+                                    todoListModel.ConvertToLowercase(getTaskList().getSelectedIndex());
+	
+				}
+			});
+		}
+		
+		return this.LowerCaseButton;
+	} 
+        
+// *********** Mock Test Programming *****************************************        
+               
 }

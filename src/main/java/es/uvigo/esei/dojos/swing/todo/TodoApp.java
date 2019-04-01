@@ -8,7 +8,12 @@ import es.uvigo.esei.dojos.swing.todo.gui.MainWindow;
 
 public class TodoApp {
 
-	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+  	public static void main(String[] args) 
+                throws ClassNotFoundException, 
+                InstantiationException,           
+                IllegalAccessException, 
+                UnsupportedLookAndFeelException {
+            
 		configureLookAndFeel();
 		
 		MainWindow window = new MainWindow();

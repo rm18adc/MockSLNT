@@ -23,23 +23,47 @@ public class TodoListModel extends AbstractListModel<String> {
 		this.fireContentsChanged(this, i, i + 1);
 	}
 	
-	public void removeAt(int i) {
+	public void removeAt1(int i) {
 		this.list.removeAt(i);
 		this.fireContentsChanged(this, i, i);
 	}
-	
+        
 	public void add(String task) {
 		this.list.add(task);
 		this.fireContentsChanged(this, 
 				this.list.size() - 1, this.list.size() - 1);
 	}
-	
+                 	        
 	@Override
 	public int getSize() {
 		return this.list.size();
 	}
 	@Override
-	public String getElementAt(int index) {
+        public String getElementAt(int index) {
 		return this.list.elementAt(index);
 	}
+//******** Mock Test Programming ***********************************************
+        public void removeAll(int i) {
+                this.list.removeAll( );
+                this.fireContentsChanged(this, i, i);
+	}
+		
+	public void reverseList() {
+		this.list.addAll(null);
+		this.fireContentsChanged(this, 
+				this.list.size() - 1, this.list.size() - 1);
+	}
+        
+	public void ConvertToUppercase(int i) {
+		this.list.ConvertToUppercase(i);
+		this.fireContentsChanged(this, i, i); 
+				
+	}
+
+	public void ConvertToLowercase(int i) {
+		this.list.ConvertToLowercase(i);
+		this.fireContentsChanged(this, i, i); 
+				
+	}
+//*********** Mock Test Programming ********************************************        
 }
